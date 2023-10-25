@@ -118,9 +118,9 @@ app.put("/videos/:id", async (req: Request, res: Response) => {
     try {
 
         const idToEdit = req.params.id;
-        const newId = req.body.newId;
-        const newTitle = req.body.newTitle;
-        const newDuration = req.body.newDuration;        
+        const id = req.body.id;
+        const title = req.body.title;
+        const duration = req.body.duration;        
 
         const [videoDB] = await db("videos").where({ id: idToEdit })
 
@@ -136,30 +136,30 @@ app.put("/videos/:id", async (req: Request, res: Response) => {
             videoDB.created_at
         )
 
-        if(newId !== undefined){
-            if (typeof newId !== "string") {
+        if(id !== undefined){
+            if (typeof id !== "string") {
                 res.status(400)
                 throw new Error("'newId' deve ser string")
             }
         }
 
-        if(newTitle !== undefined){
-            if (typeof newTitle !== "string") {
+        if(title !== undefined){
+            if (typeof title !== "string") {
                 res.status(400)
                 throw new Error("'newTitulo' deve ser string")
             }
         }
 
-        if(newDuration !== undefined){
-            if (typeof newDuration !== "number") {
+        if(duration !== undefined){
+            if (typeof duration !== "number") {
                 res.status(400)
                 throw new Error("'newDuracao' deve ser number")
             }
         }
 
-        newId && video.setId(newId)
-        newTitle && video.setTitle(newTitle)
-        newDuration && video.setDuration(newDuration)
+        id && video.setId(id)
+        title && video.setTitle(title)
+        duration && video.setDuration(duration)
 
         const newVideo: Tvideo = {
             id: video.getId(),
