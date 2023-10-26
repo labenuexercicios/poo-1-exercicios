@@ -120,7 +120,7 @@ app.put("/videos/:id", async (req: Request, res: Response) => {
 
 /*         const [videoDB] = await db("videos").where({ id: idToEdit })
  */        const videoDatabase = new VideoDatabase()
-           const videoIdToEdit = await videoDatabase.findVideoById(id)
+           const videoIdToEdit = await videoDatabase.findVideoById(idToEdit)
 
         if(!videoIdToEdit){
             res.status(400)
