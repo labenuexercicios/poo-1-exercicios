@@ -47,7 +47,6 @@ export class VideoDatabase extends BaseDatabase {
             .connection(VideoDatabase.TABLE_VIDEOS)
             .where({ id }) 
             .update({ title, duration })
-    
     }
 
     public async deleteVideo(id: string): Promise<void> {
